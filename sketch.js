@@ -24,24 +24,17 @@ function setup() {
 	helicopterSprite.addImage(helicopterIMG)
 	helicopterSprite.scale=0.6
 
-	groundSprite=createSprite(width/2, height-35, width,10,gopt);
+	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
 
 
-	var gopt={
-		isStatic : true
-	}
-
-
-	var bopt={
-		restitution : 0.9
-	}
+	
 
 
 	engine = Engine.create();
 	world = engine.world;
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.6, isStatic:false});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.6, isStatic:true});
 	World.add(world, packageBody);
 	
 
@@ -66,9 +59,10 @@ function draw() {
 
 function keyPressed() {
  if (keyCode === DOWN_ARROW) {
+	Matter.Body.setStatic(packageBody, false);
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.7, isStatic:false});
-	World.add(world, packageBody);
+	//packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.7, isStatic:false});
+//	World.add(world, packageBody);
 	
   }
 }
